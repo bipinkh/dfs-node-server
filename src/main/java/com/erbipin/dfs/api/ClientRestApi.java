@@ -39,6 +39,12 @@ public class ClientRestApi {
         return subscriberService.viewSubscription(userKey);
     }
 
+    @GetMapping("/unsubscribe")
+    public UserSubscriptionDto unsubscribe(@RequestParam String userKey){
+        return subscriberService.unsubscribe(userKey);
+    }
+
+
 
 
 

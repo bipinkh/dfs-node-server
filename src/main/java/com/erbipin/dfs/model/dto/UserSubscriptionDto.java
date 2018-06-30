@@ -2,18 +2,12 @@ package com.erbipin.dfs.model.dto;
 
 import com.erbipin.dfs.model.db.Renewals;
 import com.erbipin.dfs.model.db.Subscription;
-import com.erbipin.dfs.model.db.User;
 import com.erbipin.dfs.model.db.UserSubscription;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.List;
 

@@ -77,4 +77,16 @@ public class SubscriberService {
             throw new ResourceNotFoundException("cannot find the user subscription for given id");
         return UserSubscriptionDto.fromUserSubscription( usr.get().getUserSubscription());
     }
+
+    // unsubscribe user
+
+    public UserSubscriptionDto unsubscribe(String userKey) {
+        Optional<User> usr = userRepo.findByUserKey(userKey);
+        if (!usr.isPresent())
+            throw new ResourceNotFoundException("cannot find the user subscription for given id");
+        usr.get().getUserSubscription().setActiveStatus(false);
+        return UserSubscriptionDto.fromUserSubscription( userSubscriptionRepo.save(usr.get().getUserSubscription()) );
+    }
+
+
 }
