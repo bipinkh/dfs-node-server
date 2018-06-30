@@ -22,7 +22,7 @@ public class Subscription {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+
     private String packageName;
 
     private int status;             // active, deactive or deleted
