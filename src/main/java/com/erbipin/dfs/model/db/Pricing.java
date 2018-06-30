@@ -29,7 +29,7 @@ public class Pricing {
     private double price;       // amount of subscriptionPackage
 
     @ManyToOne
-    @JoinColumn(name="subscriptionId")
+    @JsonBackReference
     Subscription subscriptionPackage;
 
     public static Pricing fromPricingDto(PricingDto pricingDto) {

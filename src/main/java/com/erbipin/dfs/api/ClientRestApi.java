@@ -23,6 +23,6 @@ public class ClientRestApi {
         return "Online.";
     }
 
-    
+
 
 }

@@ -31,7 +31,6 @@ public class User {
     private int userStatus;     //active, deactive, blocked
 
     @OneToOne
-    @JsonManagedReference
     @PrimaryKeyJoinColumn
     UserSubscription userSubscription;
 

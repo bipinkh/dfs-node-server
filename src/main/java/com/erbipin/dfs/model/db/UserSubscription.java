@@ -27,12 +27,11 @@ public class UserSubscription {
 
     @OneToOne
     @JsonBackReference
-    @PrimaryKeyJoinColumn
     User user;
 
-    @OneToOne
+    @ManyToOne
     @JsonManagedReference
-    Subscription subscription;
+    Subscription subscriptionPackage;
 
     private Timestamp startedDate;
 
@@ -44,7 +43,4 @@ public class UserSubscription {
 
     private double bandwidthConsumed;
 
-    public void addSubscription(Subscription subscription){
-        this.setSubscription(subscription);
-    }
 }

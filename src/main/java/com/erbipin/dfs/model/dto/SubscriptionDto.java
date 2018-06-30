@@ -37,7 +37,7 @@ public class SubscriptionDto {
 
     public static SubscriptionDto fromSubscription(Subscription subs){
         SubscriptionDto subscriptionDto = new SubscriptionDto(
-                subs.getSubscriptionId(),
+                subs.getId(),
                 subs.getStatus(),
                 subs.getPackageName(),
                 subs.getSizeProvided(),
