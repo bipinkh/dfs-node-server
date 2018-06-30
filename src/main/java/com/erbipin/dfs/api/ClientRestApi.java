@@ -34,6 +34,12 @@ public class ClientRestApi {
         return subscriberService.createSubscription(subscribeRequest);
     }
 
+    @GetMapping("/subscribe/view")
+    public UserSubscriptionDto newSubscription(@RequestParam String userKey){
+        return subscriberService.viewSubscription(userKey);
+    }
+
+
 
 
 }

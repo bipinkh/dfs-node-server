@@ -26,6 +26,7 @@ import java.util.List;
 @AllArgsConstructor
 public class UserSubscriptionDto {
 
+    private boolean isActive;
     @JsonProperty("started_date")
     private Timestamp startedDate;
     @JsonProperty("ending_date")
@@ -43,6 +44,7 @@ public class UserSubscriptionDto {
 
     public static UserSubscriptionDto fromUserSubscription(UserSubscription subscription) {
         return new UserSubscriptionDto(
+                subscription.isActiveStatus(),
                 subscription.getStartedDate(),
                 subscription.getEndingDate(),
                 subscription.getRenewals(),

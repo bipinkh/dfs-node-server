@@ -32,6 +32,8 @@ public class SubscriberService {
     @Autowired
     SubscriptionRepo subscriptionRepo;
 
+    // subscribe user
+
     public UserSubscriptionDto createSubscription(SubscribeRequest request){
 
         User user;
@@ -66,4 +68,13 @@ public class SubscriberService {
 
     }
 
+
+    // view user subscription details
+
+    public UserSubscriptionDto viewSubscription(String userKey) {
+        Optional<User> usr = userRepo.findByUserKey(userKey);
+        if (!usr.isPresent())
+            throw new ResourceNotFoundException("cannot find the user subscription for given id");
+        return UserSubscriptionDto.fromUserSubscription( usr.get().getUserSubscription());
+    }
 }
