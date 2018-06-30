@@ -1,5 +1,6 @@
 package com.erbipin.dfs.model.db;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,7 +22,7 @@ import java.util.Collection;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
@@ -31,7 +32,7 @@ public class User {
     private int userStatus;     //active, deactive, blocked
 
     @OneToOne
-    @PrimaryKeyJoinColumn
+    @JsonBackReference
     UserSubscription userSubscription;
 
     @OneToMany

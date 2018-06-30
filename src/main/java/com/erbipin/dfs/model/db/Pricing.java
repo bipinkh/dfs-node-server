@@ -32,6 +32,15 @@ public class Pricing {
     @JsonBackReference
     Subscription subscriptionPackage;
 
+    @Override
+    public String toString() {
+        return "Pricing{" +
+                "id=" + id +
+                ", coinType=" + coinType +
+                ", price=" + price +
+                '}';
+    }
+
     public static Pricing fromPricingDto(PricingDto pricingDto) {
         Pricing pricing = new Pricing();
         pricing.setCoinType(pricingDto.getCoinType());

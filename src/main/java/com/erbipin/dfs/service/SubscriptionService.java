@@ -21,8 +21,8 @@ import java.util.Optional;
 @Service
 public class SubscriptionService {
 
-    private static final int DEACTIVATE_SUBSCRIPTION_PACKAGE = 2;
-    private static final int ACTIVE_SUBSCRIPTION_PACKAGE = 1;
+    public static final int DEACTIVATE_SUBSCRIPTION_PACKAGE = 2;
+    public static final int ACTIVE_SUBSCRIPTION_PACKAGE = 1;
 
     @Autowired
     SubscriptionRepo subscriptionRepo;

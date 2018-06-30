@@ -1,7 +1,8 @@
 package com.erbipin.dfs.model.db;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,11 +14,12 @@ import java.sql.Timestamp;
  * @author bipin khatiwada
  * github.com/bipinkh
  */
-@Entity
+
 @Data
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class File {
+public class Renewals {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,19 +27,12 @@ public class File {
 
     @ManyToOne
     @JsonBackReference
-    @PrimaryKeyJoinColumn
-    User user;
+    UserSubscription userSubscription;
 
-    private String fileName;        // file name
+    private int status;     //pending or completed
 
-    private String fileExtension;   // file extension
+    private Timestamp renewedTime;
 
-    private String fileHash;        // file hash
-
-    private double fileSize;        // file size
-
-    private String storedLocation;  // location to local container or database of file
-
-    private Timestamp uploadedDate;
+    private String transactionHash;
 
 }

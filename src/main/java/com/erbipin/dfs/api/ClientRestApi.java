@@ -1,8 +1,11 @@
 package com.erbipin.dfs.api;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.erbipin.dfs.model.dto.SubscribeRequest;
+import com.erbipin.dfs.model.dto.UserSubscriptionDto;
+import com.erbipin.dfs.service.SubscriberService;
+import com.erbipin.dfs.service.SubscriptionService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author bipin khatiwada
@@ -13,6 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/")
 public class ClientRestApi {
 
+    @Autowired
+    SubscriberService subscriberService;
+
     @GetMapping("")
     public String status(){
         return "Rest API Server is running";
@@ -21,6 +27,11 @@ public class ClientRestApi {
     @GetMapping("/ping")
     public String ping(){
         return "Online.";
+    }
+
+    @PostMapping("/subscribe/new")
+    public UserSubscriptionDto newSubscription(@RequestBody SubscribeRequest subscribeRequest){
+        return subscriberService.createSubscription(subscribeRequest);
     }
 
 

@@ -23,7 +23,7 @@ import java.util.List;
 public class Subscription {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String packageName;
@@ -48,6 +48,19 @@ public class Subscription {
     public void addPricing(Pricing pricing){
         this.pricings.add(pricing);
         pricing.setSubscriptionPackage(this);
+    }
+
+    @Override
+    public String toString() {
+        return "Subscription{" +
+                "id=" + id +
+                ", packageName='" + packageName + '\'' +
+                ", status=" + status +
+                ", sizeProvided=" + sizeProvided +
+                ", timeSpan=" + timeSpan +
+                ", bandwidthProvided=" + bandwidthProvided +
+                ", pricings=" + pricings +
+                '}';
     }
 
     public void addSubscriber(UserSubscription subscriber){
