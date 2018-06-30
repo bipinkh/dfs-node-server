@@ -18,4 +18,11 @@ public class RestAPI {
         return "Rest API Server is running";
     }
 
+    @GetMapping("/ping")
+    public String ping(){
+        return "Online.";
+    }
+
+
+
 }
