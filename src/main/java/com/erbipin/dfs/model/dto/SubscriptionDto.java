@@ -22,6 +22,8 @@ public class SubscriptionDto {
 
     @JsonProperty("subscription_id")
     private Long subsId;
+    @JsonProperty("subscription_status")
+    private int status;
     @JsonProperty("package_name")
     private String packageName;
     @JsonProperty("size_in_mb")
@@ -36,6 +38,7 @@ public class SubscriptionDto {
     public static SubscriptionDto fromSubscription(Subscription subs){
         SubscriptionDto subscriptionDto = new SubscriptionDto(
                 subs.getSubscriptionId(),
+                subs.getStatus(),
                 subs.getPackageName(),
                 subs.getSizeProvided(),
                 subs.getTimeSpan(),

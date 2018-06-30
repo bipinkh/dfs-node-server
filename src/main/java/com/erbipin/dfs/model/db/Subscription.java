@@ -25,8 +25,6 @@ import java.util.List;
 @NoArgsConstructor
 public class Subscription {
 
-    private static final int DEFAULT_SUBSCRIPTION_STATUS = 1;
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long subscriptionId;
@@ -55,7 +53,7 @@ public class Subscription {
         return new Subscription(
                 null,
                 dto.getPackageName(),
-                DEFAULT_SUBSCRIPTION_STATUS,
+                dto.getStatus(),
                 dto.getSizeProvided(),
                 dto.getTimeSpan(),
                 dto.getBandwidthProvided(),
