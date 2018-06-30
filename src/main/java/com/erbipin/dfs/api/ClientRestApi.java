@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/v1/")
-public class RestAPI {
+public class ClientRestApi {
 
     @GetMapping("")
     public String status(){
@@ -22,6 +22,5 @@ public class RestAPI {
     public String ping(){
         return "Online.";
     }
-
 
 }

@@ -26,16 +26,14 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/", "/home", "/about").permitAll()
                 .antMatchers("/api/v1/**").permitAll()
-//                .antMatchers("/admin/**").hasAnyRole("ADMIN")
-//                .antMatchers("/user/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/h2-console/**").permitAll()
+                .antMatchers("/user/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/admin/**").hasAnyRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
-                .formLogin()
-                .loginPage("/login")
-                .permitAll()
+                .formLogin().loginPage("/login").permitAll()
                 .and()
-                .logout()
-                .permitAll()
+                .logout().permitAll()
                 .and()
                 .exceptionHandling().accessDeniedHandler(accessDeniedHandler);
     }
@@ -45,9 +43,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 
         auth.inMemoryAuthentication()
-                .withUser("user").password("$2a$12$q28CBGj4f9A2aPanFAViZeVUB1RIyffyNYoItN0TDj.aVKsGRt2wm").roles("USER")
+                .withUser("user").password("user").roles("USER")
                 .and()
-                .withUser("admin").password("$2a$12$q28CBGj4f9A2aPanFAViZeVUB1RIyffyNYoItN0TDj.aVKsGRt2wm").roles("ADMIN");
+                .withUser("admin").password("admin").roles("ADMIN");
     }
 
     @Bean
