@@ -1,12 +1,18 @@
 package com.erbipin.dfs.model.db;
 
+import com.erbipin.dfs.model.dto.PricingDto;
+import com.erbipin.dfs.model.dto.SubscriptionDto;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * @author bipin khatiwada
@@ -19,9 +25,11 @@ import java.util.Collection;
 @NoArgsConstructor
 public class Subscription {
 
+    private static final int DEFAULT_SUBSCRIPTION_STATUS = 1;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long subscriptionId;
 
     private String packageName;
 
@@ -33,9 +41,9 @@ public class Subscription {
 
     private double bandwidthProvided;  // bandwidth for given time in GB
 
-    @OneToMany
-    @JsonManagedReference
-    Collection<Pricing> pricings;
+    @OneToMany(mappedBy = "subscriptionPackage", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonBackReference
+    List<Pricing> pricings;
 
     public void addPricing(Pricing pricing){
         this.pricings.add(pricing);
@@ -43,5 +51,16 @@ public class Subscription {
     }
 
 
+    public static Subscription fromSubscriptionDto(SubscriptionDto dto){
+        return new Subscription(
+                null,
+                dto.getPackageName(),
+                DEFAULT_SUBSCRIPTION_STATUS,
+                dto.getSizeProvided(),
+                dto.getTimeSpan(),
+                dto.getBandwidthProvided(),
+                new ArrayList<Pricing>()
+        );
+    }
 
 }

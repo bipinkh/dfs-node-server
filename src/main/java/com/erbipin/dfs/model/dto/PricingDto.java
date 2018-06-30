@@ -1,6 +1,7 @@
 package com.erbipin.dfs.model.dto;
 
 import com.erbipin.dfs.model.db.Pricing;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,9 +15,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PricingDto {
-
+    @JsonProperty("coin_type")
     private int coinType;
-
+    @JsonProperty("price")
     private double price;
 
     public static PricingDto fromPricing(Pricing price) {

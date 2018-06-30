@@ -7,7 +7,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * @author bipin khatiwada
@@ -18,6 +20,8 @@ import java.util.Collection;
 @AllArgsConstructor
 public class SubscriptionDto {
 
+    @JsonProperty("subscription_id")
+    private Long subsId;
     @JsonProperty("package_name")
     private String packageName;
     @JsonProperty("size_in_mb")
@@ -27,20 +31,23 @@ public class SubscriptionDto {
     @JsonProperty("bandwidth_provided")
     private double bandwidthProvided;
     @JsonProperty("pricings")
-    Collection<PricingDto> pricings;
+    List<PricingDto> pricings;
 
     public static SubscriptionDto fromSubscription(Subscription subs){
         SubscriptionDto subscriptionDto = new SubscriptionDto(
+                subs.getSubscriptionId(),
                 subs.getPackageName(),
                 subs.getSizeProvided(),
                 subs.getTimeSpan(),
                 subs.getBandwidthProvided(),
-                null
+                new ArrayList<PricingDto>()
         );
-        Collection<Pricing> pricings = subs.getPricings();
+        List<Pricing> pricings = subs.getPricings();
+        List<PricingDto> priceDtos = new ArrayList<PricingDto>();
         for (Pricing price : pricings){
-            subscriptionDto.pricings.add( PricingDto.fromPricing(price) );
+            priceDtos.add( PricingDto.fromPricing(price) );
         }
+        subscriptionDto.setPricings(priceDtos);
         return subscriptionDto;
     }
 
