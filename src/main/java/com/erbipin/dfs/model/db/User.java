@@ -8,7 +8,9 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * @author bipin khatiwada
@@ -37,7 +39,7 @@ public class User {
 
     @OneToMany
     @JsonManagedReference
-    Collection<File> file;
+    List<File> file = new ArrayList<File>();
 
     public void addUserSubscription(UserSubscription subscription){
         this.setUserSubscription(subscription);

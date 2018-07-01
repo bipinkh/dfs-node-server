@@ -1,11 +1,17 @@
 package com.erbipin.dfs.api;
 
+import com.erbipin.dfs.model.dto.FileUploadRequest;
 import com.erbipin.dfs.model.dto.SubscribeRequest;
 import com.erbipin.dfs.model.dto.UserSubscriptionDto;
+import com.erbipin.dfs.service.FileService;
 import com.erbipin.dfs.service.SubscriberService;
 import com.erbipin.dfs.service.SubscriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 /**
  * @author bipin khatiwada
@@ -18,6 +24,8 @@ public class ClientRestApi {
 
     @Autowired
     SubscriberService subscriberService;
+    @Autowired
+    FileService fileService;
 
     @GetMapping("")
     public String status(){
@@ -44,7 +52,16 @@ public class ClientRestApi {
         return subscriberService.unsubscribe(userKey);
     }
 
+    // this is just for temporary purpose
+    @GetMapping("/temp-form")
+    public String redirect() {
+        return "redirect:/uploadImage.html";
+    }
 
+    @PostMapping("/file")
+    public boolean submit(FileUploadRequest request) throws IOException {
+        return fileService.saveFile(request);
+    }
 
 
 

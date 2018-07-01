@@ -1,5 +1,6 @@
 package com.erbipin.dfs.model.db;
 
+import com.erbipin.dfs.model.dto.FileUploadRequest;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -37,7 +38,13 @@ public class File {
     private double fileSize;        // file size
 
     private String storedLocation;  // location to local container or database of file
-
     private Timestamp uploadedDate;
+
+    public static File fromFileUploadRequest(FileUploadRequest uploadRequest){
+        File file = new File();
+        file.setFileName(uploadRequest.getFiles()[0].getOriginalFilename());
+        file.setFileSize(uploadRequest.getFiles()[0].getSize());
+        return file;
+    }
 
 }
