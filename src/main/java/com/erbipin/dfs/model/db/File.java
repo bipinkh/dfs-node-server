@@ -2,7 +2,6 @@ package com.erbipin.dfs.model.db;
 
 import com.erbipin.dfs.model.dto.FileUploadRequest;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
